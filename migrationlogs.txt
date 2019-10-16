@@ -1,0 +1,171 @@
+[ENV]:/vagrant/src/flixter $ heroku run rake db:migrate
+Running rake db:migrate on ⬢ flixter-melissa-roetker... up, run.7540 (Free)
+D, [2019-10-16T03:31:21.554719 #4] DEBUG -- :    (18.5ms)  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)
+D, [2019-10-16T03:31:21.568463 #4] DEBUG -- :    (9.2ms)  CREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)
+D, [2019-10-16T03:31:21.572882 #4] DEBUG -- :    (1.5ms)  SELECT pg_try_advisory_lock(1586459236309170090)
+D, [2019-10-16T03:31:21.613065 #4] DEBUG -- :    (2.5ms)  SELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC
+I, [2019-10-16T03:31:21.620011 #4]  INFO -- : Migrating to DeviseCreateUsers (20190921154403)
+D, [2019-10-16T03:31:21.627785 #4] DEBUG -- :    (2.6ms)  BEGIN
+== 20190921154403 DeviseCreateUsers: migrating ================================
+-- create_table(:users)
+D, [2019-10-16T03:31:21.643907 #4] DEBUG -- :    (9.8ms)  CREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)
+   -> 0.0149s
+-- add_index(:users, :email, {:unique=>true})
+D, [2019-10-16T03:31:21.665370 #4] DEBUG -- :    (3.7ms)  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+   -> 0.0207s
+-- add_index(:users, :reset_password_token, {:unique=>true})
+D, [2019-10-16T03:31:21.677821 #4] DEBUG -- :    (5.5ms)  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")
+   -> 0.0186s
+== 20190921154403 DeviseCreateUsers: migrated (0.0563s) =======================
+
+D, [2019-10-16T03:31:21.695946 #4] DEBUG -- :   ActiveRecord::SchemaMigration Create (1.9ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"  [["version", "20190921154403"]]
+D, [2019-10-16T03:31:21.704828 #4] DEBUG -- :    (3.3ms)  COMMIT
+I, [2019-10-16T03:31:21.705316 #4]  INFO -- : Migrating to CreateCourses (20191005152343)
+D, [2019-10-16T03:31:21.709470 #4] DEBUG -- :    (2.9ms)  BEGIN
+== 20191005152343 CreateCourses: migrating ====================================
+-- create_table(:courses)
+D, [2019-10-16T03:31:21.722779 #4] DEBUG -- :    (12.2ms)  CREATE TABLE "courses" ("id" bigserial primary key, "title" character varying, "description" text, "cost" decimal, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)
+   -> 0.0136s
+-- add_index(:courses, :user_id)
+D, [2019-10-16T03:31:21.753561 #4] DEBUG -- :    (6.0ms)  CREATE  INDEX  "index_courses_on_user_id" ON "courses"  ("user_id")
+   -> 0.0303s
+== 20191005152343 CreateCourses: migrated (0.0441s) ===========================
+
+D, [2019-10-16T03:31:21.760749 #4] DEBUG -- :   ActiveRecord::SchemaMigration Create (5.9ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"  [["version", "20191005152343"]]
+D, [2019-10-16T03:31:21.765600 #4] DEBUG -- :    (4.5ms)  COMMIT
+I, [2019-10-16T03:31:21.765749 #4]  INFO -- : Migrating to CreateSections (20191011005326)
+D, [2019-10-16T03:31:21.770111 #4] DEBUG -- :    (2.8ms)  BEGIN
+== 20191011005326 CreateSections: migrating ===================================
+-- create_table(:sections)
+D, [2019-10-16T03:31:21.785309 #4] DEBUG -- :    (11.5ms)  CREATE TABLE "sections" ("id" bigserial primary key, "title" character varying, "course_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)
+   -> 0.0127s
+-- add_index(:sections, :course_id)
+D, [2019-10-16T03:31:21.801529 #4] DEBUG -- :    (8.8ms)  CREATE  INDEX  "index_sections_on_course_id" ON "sections"  ("course_id")
+   -> 0.0159s
+== 20191011005326 CreateSections: migrated (0.0318s) ==========================
+
+D, [2019-10-16T03:31:21.805180 #4] DEBUG -- :   ActiveRecord::SchemaMigration Create (1.7ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"  [["version", "20191011005326"]]
+D, [2019-10-16T03:31:21.811813 #4] DEBUG -- :    (2.4ms)  COMMIT
+I, [2019-10-16T03:31:21.812181 #4]  INFO -- : Migrating to CreateLessons (20191011014627)
+D, [2019-10-16T03:31:21.816088 #4] DEBUG -- :    (1.9ms)  BEGIN
+== 20191011014627 CreateLessons: migrating ====================================
+-- create_table(:lessons)
+D, [2019-10-16T03:31:21.825459 #4] DEBUG -- :    (8.0ms)  CREATE TABLE "lessons" ("id" bigserial primary key, "title" character varying, "subtitle" character varying, "section_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)
+   -> 0.0095s
+-- add_index(:lessons, :section_id)
+D, [2019-10-16T03:31:21.843915 #4] DEBUG -- :    (6.3ms)  CREATE  INDEX  "index_lessons_on_section_id" ON "lessons"  ("section_id")
+   -> 0.0176s
+== 20191011014627 CreateLessons: migrated (0.0280s) ===========================
+
+D, [2019-10-16T03:31:21.847433 #4] DEBUG -- :   ActiveRecord::SchemaMigration Create (1.7ms)  INSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"  [["version", "20191011014627"]]
+D, [2019-10-16T03:31:21.850656 #4] DEBUG -- :    (2.9ms)  COMMIT
+I, [2019-10-16T03:31:21.850793 #4]  INFO -- : Migrating to AddImageToCourses (20191012002402)
+D, [2019-10-16T03:31:21.853098 #4] DEBUG -- :    (1.5ms)  BEGIN
+== 20191012002402 AddImageToCourses: migrating ================================
+-- add_column(:courses, :image, :string)
+D, [2019-10-16T03:31:21.856702 #4] DEBUG -- :    (2.8ms)  ALTER TABLE "courses" ADD "image" character varying
+   -> 0.0034s
+-- mount_uploader(:image, ImageUploader)
+D, [2019-10-16T03:31:21.859729 #4] DEBUG -- :    (1.5ms)  ROLLBACK
+D, [2019-10-16T03:31:21.867957 #4] DEBUG -- :    (1.6ms)  SELECT pg_advisory_unlock(1586459236309170090)
+rake aborted!
+StandardError: An error has occurred, this and all later migrations canceled:
+
+undefined method `mount_uploader' for #<AddImageToCourses:0x000055948056c588>
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:870:in `block in method_missing'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:840:in `block in say_with_time'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:840:in `say_with_time'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:860:in `method_missing'
+/app/db/migrate/20191012002402_add_image_to_courses.rb:4:in `change'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:814:in `exec_migration'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:798:in `block (2 levels) in migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:797:in `block in migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:416:in `with_connection'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:796:in `migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:977:in `migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1292:in `block in execute_migration_in_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1343:in `block in ddl_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/connection_adapters/abstract/database_statements.rb:267:in `block in transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/connection_adapters/abstract/transaction.rb:239:in `block in within_new_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/connection_adapters/abstract/transaction.rb:236:in `within_new_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/connection_adapters/abstract/database_statements.rb:267:in `transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/transactions.rb:212:in `transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1343:in `ddl_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1291:in `execute_migration_in_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1263:in `block in migrate_without_lock'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1262:in `each'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1262:in `migrate_without_lock'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1210:in `block in migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1363:in `with_advisory_lock'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1210:in `migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1036:in `up'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1011:in `migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/tasks/database_tasks.rb:172:in `migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/railties/databases.rake:60:in `block (2 levels) in <top (required)>'
+/app/vendor/bundle/ruby/2.5.0/gems/rake-12.3.3/exe/rake:27:in `<top (required)>'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli/exec.rb:74:in `load'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli/exec.rb:74:in `kernel_load'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli/exec.rb:28:in `run'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli.rb:465:in `exec'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/vendor/thor/lib/thor/invocation.rb:126:in `invoke_command'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/vendor/thor/lib/thor.rb:387:in `dispatch'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli.rb:27:in `dispatch'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/vendor/thor/lib/thor/base.rb:466:in `start'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli.rb:18:in `start'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/exe/bundle:30:in `block in <top (required)>'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/friendly_errors.rb:124:in `with_friendly_errors'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/exe/bundle:22:in `<top (required)>'
+/app/bin/bundle:3:in `load'
+/app/bin/bundle:3:in `<main>'
+
+Caused by:
+NoMethodError: undefined method `mount_uploader' for #<AddImageToCourses:0x000055948056c588>
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:870:in `block in method_missing'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:840:in `block in say_with_time'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:840:in `say_with_time'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:860:in `method_missing'
+/app/db/migrate/20191012002402_add_image_to_courses.rb:4:in `change'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:814:in `exec_migration'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:798:in `block (2 levels) in migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:797:in `block in migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:416:in `with_connection'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:796:in `migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:977:in `migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1292:in `block in execute_migration_in_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1343:in `block in ddl_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/connection_adapters/abstract/database_statements.rb:267:in `block in transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/connection_adapters/abstract/transaction.rb:239:in `block in within_new_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/connection_adapters/abstract/transaction.rb:236:in `within_new_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/connection_adapters/abstract/database_statements.rb:267:in `transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/transactions.rb:212:in `transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1343:in `ddl_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1291:in `execute_migration_in_transaction'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1263:in `block in migrate_without_lock'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1262:in `each'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1262:in `migrate_without_lock'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1210:in `block in migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1363:in `with_advisory_lock'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1210:in `migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1036:in `up'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/migration.rb:1011:in `migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/tasks/database_tasks.rb:172:in `migrate'
+/app/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.3/lib/active_record/railties/databases.rake:60:in `block (2 levels) in <top (required)>'
+/app/vendor/bundle/ruby/2.5.0/gems/rake-12.3.3/exe/rake:27:in `<top (required)>'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli/exec.rb:74:in `load'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli/exec.rb:74:in `kernel_load'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli/exec.rb:28:in `run'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli.rb:465:in `exec'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/vendor/thor/lib/thor/invocation.rb:126:in `invoke_command'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/vendor/thor/lib/thor.rb:387:in `dispatch'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli.rb:27:in `dispatch'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/vendor/thor/lib/thor/base.rb:466:in `start'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/cli.rb:18:in `start'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/exe/bundle:30:in `block in <top (required)>'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/lib/bundler/friendly_errors.rb:124:in `with_friendly_errors'
+/app/vendor/bundle/ruby/2.5.0/gems/bundler-2.0.2/exe/bundle:22:in `<top (required)>'
+/app/bin/bundle:3:in `load'
+/app/bin/bundle:3:in `<main>'
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)

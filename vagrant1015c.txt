@@ -1,0 +1,102 @@
+[ENV]:/vagrant/src/flixter $ heroku logs
+2019-10-16T03:33:06.087001+00:00 app[web.1]: I, [2019-10-16T03:33:06.086927 #4]  INFO -- : [4abce8fb-d587-48a4-9d39-150f99b8f301]   Parameters: {"utf8"=>"✓", "authenticity_token"=>"nJXNLGRsqks8mvwioKflJDYEleiVdjZgt/eq/v/+npe0L6kMuWBVzJOAL6tVmIUdjKFMvDo2ibtCvzFH0vcFIg==", "user"=>{"email"=>"user@myplace.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign Up"}
+2019-10-16T03:33:06.249040+00:00 app[web.1]: D, [2019-10-16T03:33:06.248904 #4] DEBUG -- : [4abce8fb-d587-48a4-9d39-150f99b8f301]    (1.0ms)  BEGIN
+2019-10-16T03:33:06.253085+00:00 app[web.1]: D, [2019-10-16T03:33:06.252993 #4] DEBUG -- : [4abce8fb-d587-48a4-9d39-150f99b8f301]   User Exists (1.7ms)  SELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "user@myplace.com"], ["LIMIT", 1]]
+2019-10-16T03:33:06.256656+00:00 app[web.1]: D, [2019-10-16T03:33:06.256575 #4] DEBUG -- : [4abce8fb-d587-48a4-9d39-150f99b8f301]   User Create (1.6ms)  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "user@myplace.com"], ["encrypted_password", "$2a$11$Spqs894iM.DyWAuEcoIacelUd9HivHa69YIkUwVwJROcKux2yjTN2"], ["created_at", "2019-10-16 03:33:06.253782"], ["updated_at", "2019-10-16 03:33:06.253782"]]
+2019-10-16T03:33:06.259393+00:00 app[web.1]: D, [2019-10-16T03:33:06.259302 #4] DEBUG -- : [4abce8fb-d587-48a4-9d39-150f99b8f301]    (2.3ms)  COMMIT
+2019-10-16T03:33:06.263068+00:00 app[web.1]: I, [2019-10-16T03:33:06.262995 #4]  INFO -- : [4abce8fb-d587-48a4-9d39-150f99b8f301] Redirected to https://flixter-melissa-roetker.herokuapp.com/
+2019-10-16T03:33:06.263267+00:00 app[web.1]: I, [2019-10-16T03:33:06.263189 #4]  INFO -- : [4abce8fb-d587-48a4-9d39-150f99b8f301] Completed 302 Found in 176ms (ActiveRecord: 6.7ms)
+2019-10-16T03:33:06.332520+00:00 app[web.1]: I, [2019-10-16T03:33:06.332371 #4]  INFO -- : [5b1ac39f-c660-4570-87af-65e281e978cb] Started GET "/" for 71.196.254.141 at 2019-10-16 03:33:06 +0000
+2019-10-16T03:33:06.333926+00:00 app[web.1]: I, [2019-10-16T03:33:06.333826 #4]  INFO -- : [5b1ac39f-c660-4570-87af-65e281e978cb] Processing by StaticPagesController#index as HTML
+2019-10-16T03:33:06.265965+00:00 heroku[router]: at=info method=POST path="/users" host=flixter-melissa-roetker.herokuapp.com request_id=4abce8fb-d587-48a4-9d39-150f99b8f301 fwd="71.196.254.141" dyno=web.1 connect=1ms service=186ms status=302 bytes=1079 protocol=https
+2019-10-16T03:33:06.335825+00:00 app[web.1]: I, [2019-10-16T03:33:06.335738 #4]  INFO -- : [5b1ac39f-c660-4570-87af-65e281e978cb]   Rendering static_pages/index.html.erb within layouts/application
+2019-10-16T03:33:06.336251+00:00 app[web.1]: I, [2019-10-16T03:33:06.336175 #4]  INFO -- : [5b1ac39f-c660-4570-87af-65e281e978cb]   Rendered static_pages/index.html.erb within layouts/application (0.3ms)
+2019-10-16T03:33:06.341385+00:00 app[web.1]: D, [2019-10-16T03:33:06.341280 #4] DEBUG -- : [5b1ac39f-c660-4570-87af-65e281e978cb]   User Load (1.3ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 1], ["LIMIT", 1]]
+2019-10-16T03:33:06.342712+00:00 app[web.1]: I, [2019-10-16T03:33:06.342620 #4]  INFO -- : [5b1ac39f-c660-4570-87af-65e281e978cb] Completed 200 OK in 9ms (Views: 6.1ms | ActiveRecord: 1.3ms)
+2019-10-16T03:33:06.345515+00:00 heroku[router]: at=info method=GET path="/" host=flixter-melissa-roetker.herokuapp.com request_id=5b1ac39f-c660-4570-87af-65e281e978cb fwd="71.196.254.141" dyno=web.1 connect=1ms service=17ms status=200 bytes=3779 protocol=https
+2019-10-16T03:33:11.860644+00:00 app[web.1]: I, [2019-10-16T03:33:11.860522 #4]  INFO -- : [cbeb4ff8-d24d-4b58-90e6-a45c34b6d441] Started GET "/instructor/courses/new" for 71.196.254.141 at 2019-10-16 03:33:11 +0000
+2019-10-16T03:33:11.861991+00:00 app[web.1]: I, [2019-10-16T03:33:11.861909 #4]  INFO -- : [cbeb4ff8-d24d-4b58-90e6-a45c34b6d441] Processing by Instructor::CoursesController#new as HTML
+2019-10-16T03:33:11.876103+00:00 app[web.1]: D, [2019-10-16T03:33:11.875959 #4] DEBUG -- : [cbeb4ff8-d24d-4b58-90e6-a45c34b6d441]   User Load (9.1ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 1], ["LIMIT", 1]]
+2019-10-16T03:33:11.916875+00:00 app[web.1]: I, [2019-10-16T03:33:11.916746 #4]  INFO -- : [cbeb4ff8-d24d-4b58-90e6-a45c34b6d441]   Rendering instructor/courses/new.html.erb within layouts/application
+2019-10-16T03:33:11.956336+00:00 app[web.1]: I, [2019-10-16T03:33:11.956202 #4]  INFO -- : [cbeb4ff8-d24d-4b58-90e6-a45c34b6d441]   Rendered instructor/courses/new.html.erb within layouts/application (39.3ms)
+2019-10-16T03:33:11.958253+00:00 app[web.1]: I, [2019-10-16T03:33:11.958173 #4]  INFO -- : [cbeb4ff8-d24d-4b58-90e6-a45c34b6d441] Completed 200 OK in 96ms (Views: 43.0ms | ActiveRecord: 17.7ms)
+2019-10-16T03:33:11.961091+00:00 heroku[router]: at=info method=GET path="/instructor/courses/new" host=flixter-melissa-roetker.herokuapp.com request_id=cbeb4ff8-d24d-4b58-90e6-a45c34b6d441 fwd="71.196.254.141" dyno=web.1 connect=1ms service=107ms status=200 bytes=4595 protocol=https
+2019-10-16T03:33:35.147946+00:00 app[web.1]: I, [2019-10-16T03:33:35.147832 #4]  INFO -- : [644d0b72-b64f-4340-9de3-d70695e886e9] Started POST "/instructor/courses" for 71.196.254.141 at 2019-10-16 03:33:35 +0000
+2019-10-16T03:33:35.148997+00:00 app[web.1]: I, [2019-10-16T03:33:35.148927 #4]  INFO -- : [644d0b72-b64f-4340-9de3-d70695e886e9] Processing by Instructor::CoursesController#create as HTML
+2019-10-16T03:33:35.149124+00:00 app[web.1]: I, [2019-10-16T03:33:35.149059 #4]  INFO -- : [644d0b72-b64f-4340-9de3-d70695e886e9]   Parameters: {"utf8"=>"✓", "authenticity_token"=>"LJjz7H1/ISFc9wKSk0iNkU9kalesRKtDcdCp4nfe08aLr/bbr+fzSUR8lODVSwgULO3unu33zepdcnOdEBUqcg==", "course"=>{"title"=>"Adding Images in Ruby", "description"=>"Using CarrierWave", "cost"=>"0", "image"=>#<ActionDispatch::Http::UploadedFile:0x000056098d68d638 @tempfile=#<Tempfile:/tmp/RackMultipart20191016-4-1gqp0y0.png>, @original_filename="upload-files-drag-and-drop.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"course[image]\"; filename=\"upload-files-drag-and-drop.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create"}
+2019-10-16T03:33:35.153645+00:00 app[web.1]: D, [2019-10-16T03:33:35.153569 #4] DEBUG -- : [644d0b72-b64f-4340-9de3-d70695e886e9]   User Load (1.4ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 1], ["LIMIT", 1]]
+2019-10-16T03:33:35.178644+00:00 app[web.1]: I, [2019-10-16T03:33:35.178535 #4]  INFO -- : [644d0b72-b64f-4340-9de3-d70695e886e9] Completed 500 Internal Server Error in 29ms (ActiveRecord: 1.4ms)
+2019-10-16T03:33:35.179208+00:00 app[web.1]: F, [2019-10-16T03:33:35.179119 #4] FATAL -- : [644d0b72-b64f-4340-9de3-d70695e886e9]
+2019-10-16T03:33:35.179402+00:00 app[web.1]: F, [2019-10-16T03:33:35.179335 #4] FATAL -- : [644d0b72-b64f-4340-9de3-d70695e886e9] NoMethodError (undefined method `image_will_change!' for #<Course:0x000056098d64efa0>
+2019-10-16T03:33:35.179406+00:00 app[web.1]: Did you mean?  title_will_change!):
+2019-10-16T03:33:35.179466+00:00 app[web.1]: F, [2019-10-16T03:33:35.179396 #4] FATAL -- : [644d0b72-b64f-4340-9de3-d70695e886e9]
+2019-10-16T03:33:35.179545+00:00 app[web.1]: F, [2019-10-16T03:33:35.179483 #4] FATAL -- : [644d0b72-b64f-4340-9de3-d70695e886e9] app/controllers/instructor/courses_controller.rb:10:in `create'
+2019-10-16T03:33:35.181306+00:00 heroku[router]: at=info method=POST path="/instructor/courses" host=flixter-melissa-roetker.herokuapp.com request_id=644d0b72-b64f-4340-9de3-d70695e886e9 fwd="71.196.254.141" dyno=web.1 connect=1ms service=102ms status=500 bytes=1827 protocol=https
+2019-10-16T03:36:00.000000+00:00 app[api]: Build started by user mlroetker@yahoo.com
+2019-10-16T03:36:24.512212+00:00 heroku[web.1]: Restarting
+2019-10-16T03:36:24.617360+00:00 heroku[web.1]: State changed from up to starting
+2019-10-16T03:36:24.184351+00:00 app[api]: Deploy c68c8056 by user mlroetker@yahoo.com
+2019-10-16T03:36:25.495060+00:00 app[web.1]: - Gracefully stopping, waiting for requests to finish
+2019-10-16T03:36:25.496206+00:00 app[web.1]: === puma shutdown: 2019-10-16 03:36:25 +0000 ===
+2019-10-16T03:36:25.496209+00:00 app[web.1]: - Goodbye!
+2019-10-16T03:36:25.496318+00:00 app[web.1]: Exiting
+2019-10-16T03:36:25.479127+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2019-10-16T03:36:25.596561+00:00 heroku[web.1]: Process exited with status 143
+2019-10-16T03:36:24.184351+00:00 app[api]: Release v31 created by user mlroetker@yahoo.com
+2019-10-16T03:36:28.494480+00:00 heroku[web.1]: Starting process with command `bin/rails server -p 24422 -e production`
+2019-10-16T03:36:28.000000+00:00 app[api]: Build succeeded
+2019-10-16T03:36:33.203762+00:00 heroku[web.1]: State changed from starting to up
+2019-10-16T03:38:22.050389+00:00 heroku[web.1]: Restarting
+2019-10-16T03:38:22.083988+00:00 heroku[web.1]: State changed from up to starting
+2019-10-16T03:38:22.941874+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2019-10-16T03:38:23.043083+00:00 heroku[web.1]: Process exited with status 143
+2019-10-16T03:38:22.990286+00:00 app[web.1]: => Booting Puma
+2019-10-16T03:38:22.990313+00:00 app[web.1]: => Rails 5.2.3 application starting in production
+2019-10-16T03:38:22.990315+00:00 app[web.1]: => Run `rails server -h` for more startup options
+2019-10-16T03:38:22.990318+00:00 app[web.1]: Puma starting in single mode...
+2019-10-16T03:38:22.990320+00:00 app[web.1]: * Version 3.12.1 (ruby 2.5.3-p105), codename: Llamas in Pajamas
+2019-10-16T03:38:22.990322+00:00 app[web.1]: * Min threads: 5, max threads: 5
+2019-10-16T03:38:22.990324+00:00 app[web.1]: * Environment: production
+2019-10-16T03:38:22.990326+00:00 app[web.1]: * Listening on tcp://0.0.0.0:24422
+2019-10-16T03:38:22.990328+00:00 app[web.1]: Use Ctrl-C to stop
+2019-10-16T03:38:22.990330+00:00 app[web.1]: - Gracefully stopping, waiting for requests to finish
+2019-10-16T03:38:22.990332+00:00 app[web.1]: === puma shutdown: 2019-10-16 03:38:22 +0000 ===
+2019-10-16T03:38:22.990334+00:00 app[web.1]: - Goodbye!
+2019-10-16T03:38:22.990336+00:00 app[web.1]: Exiting
+2019-10-16T03:38:26.409968+00:00 heroku[web.1]: Starting process with command `bin/rails server -p 33725 -e production`
+2019-10-16T03:38:35.529030+00:00 heroku[web.1]: State changed from starting to up
+2019-10-16T03:38:36.288999+00:00 heroku[router]: at=info method=GET path="/" host=flixter-melissa-roetker.herokuapp.com request_id=ab2f16c9-eb6f-4e53-8cd8-3a6429006af3 fwd="71.196.254.141" dyno=web.1 connect=0ms service=218ms status=200 bytes=3689 protocol=https
+2019-10-16T03:38:36.076695+00:00 app[web.1]: => Booting Puma
+2019-10-16T03:38:36.076724+00:00 app[web.1]: => Rails 5.2.3 application starting in production
+2019-10-16T03:38:36.076726+00:00 app[web.1]: => Run `rails server -h` for more startup options
+2019-10-16T03:38:36.076734+00:00 app[web.1]: Puma starting in single mode...
+2019-10-16T03:38:36.076736+00:00 app[web.1]: * Version 3.12.1 (ruby 2.5.3-p105), codename: Llamas in Pajamas
+2019-10-16T03:38:36.076742+00:00 app[web.1]: * Min threads: 5, max threads: 5
+2019-10-16T03:38:36.076745+00:00 app[web.1]: * Environment: production
+2019-10-16T03:38:36.076747+00:00 app[web.1]: * Listening on tcp://0.0.0.0:33725
+2019-10-16T03:38:36.076748+00:00 app[web.1]: Use Ctrl-C to stop
+2019-10-16T03:38:36.076755+00:00 app[web.1]: I, [2019-10-16T03:38:36.076565 #4]  INFO -- : [ab2f16c9-eb6f-4e53-8cd8-3a6429006af3] Started GET "/" for 71.196.254.141 at 2019-10-16 03:38:36 +0000
+2019-10-16T03:38:36.082740+00:00 app[web.1]: I, [2019-10-16T03:38:36.082415 #4]  INFO -- : [ab2f16c9-eb6f-4e53-8cd8-3a6429006af3] Processing by StaticPagesController#index as HTML
+2019-10-16T03:38:36.106442+00:00 app[web.1]: I, [2019-10-16T03:38:36.106328 #4]  INFO -- : [ab2f16c9-eb6f-4e53-8cd8-3a6429006af3]   Rendering static_pages/index.html.erb within layouts/application
+2019-10-16T03:38:36.108507+00:00 app[web.1]: I, [2019-10-16T03:38:36.108437 #4]  INFO -- : [ab2f16c9-eb6f-4e53-8cd8-3a6429006af3]   Rendered static_pages/index.html.erb within layouts/application (1.8ms)
+2019-10-16T03:38:36.240564+00:00 app[web.1]: D, [2019-10-16T03:38:36.240412 #4] DEBUG -- : [ab2f16c9-eb6f-4e53-8cd8-3a6429006af3]   User Load (4.7ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 1], ["LIMIT", 1]]
+2019-10-16T03:38:36.284754+00:00 app[web.1]: I, [2019-10-16T03:38:36.284631 #4]  INFO -- : [ab2f16c9-eb6f-4e53-8cd8-3a6429006af3] Completed 200 OK in 202ms (Views: 181.2ms | ActiveRecord: 44.7ms)
+2019-10-16T03:38:44.689801+00:00 app[web.1]: I, [2019-10-16T03:38:44.689694 #4]  INFO -- : [901fefe6-0f8e-4423-99f7-7b90eb38be2e] Started GET "/instructor/courses/new" for 71.196.254.141 at 2019-10-16 03:38:44 +0000
+2019-10-16T03:38:44.690856+00:00 app[web.1]: I, [2019-10-16T03:38:44.690788 #4]  INFO -- : [901fefe6-0f8e-4423-99f7-7b90eb38be2e] Processing by Instructor::CoursesController#new as HTML
+2019-10-16T03:38:44.694979+00:00 app[web.1]: D, [2019-10-16T03:38:44.694914 #4] DEBUG -- : [901fefe6-0f8e-4423-99f7-7b90eb38be2e]   User Load (1.3ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 1], ["LIMIT", 1]]
+2019-10-16T03:38:44.715359+00:00 app[web.1]: I, [2019-10-16T03:38:44.715240 #4]  INFO -- : [901fefe6-0f8e-4423-99f7-7b90eb38be2e]   Rendering instructor/courses/new.html.erb within layouts/application
+2019-10-16T03:38:44.780572+00:00 app[web.1]: I, [2019-10-16T03:38:44.780449 #4]  INFO -- : [901fefe6-0f8e-4423-99f7-7b90eb38be2e]   Rendered instructor/courses/new.html.erb within layouts/application (65.0ms)
+2019-10-16T03:38:44.783137+00:00 app[web.1]: I, [2019-10-16T03:38:44.783026 #4]  INFO -- : [901fefe6-0f8e-4423-99f7-7b90eb38be2e] Completed 200 OK in 92ms (Views: 69.7ms | ActiveRecord: 6.1ms)
+2019-10-16T03:38:44.788014+00:00 heroku[router]: at=info method=GET path="/instructor/courses/new" host=flixter-melissa-roetker.herokuapp.com request_id=901fefe6-0f8e-4423-99f7-7b90eb38be2e fwd="71.196.254.141" dyno=web.1 connect=0ms service=97ms status=200 bytes=4595 protocol=https
+2019-10-16T03:39:06.958722+00:00 app[web.1]: I, [2019-10-16T03:39:06.958609 #4]  INFO -- : [a062d8a9-3eff-4d5a-bbc5-71ffcee11fa9] Started POST "/instructor/courses" for 71.196.254.141 at 2019-10-16 03:39:06 +0000
+2019-10-16T03:39:06.960618+00:00 app[web.1]: I, [2019-10-16T03:39:06.960542 #4]  INFO -- : [a062d8a9-3eff-4d5a-bbc5-71ffcee11fa9] Processing by Instructor::CoursesController#create as HTML
+2019-10-16T03:39:06.960871+00:00 app[web.1]: I, [2019-10-16T03:39:06.960769 #4]  INFO -- : [a062d8a9-3eff-4d5a-bbc5-71ffcee11fa9]   Parameters: {"utf8"=>"✓", "authenticity_token"=>"Bxe+q6jBeNXDbTVehRRpAZpiRDLqcqpVCgu+wsWh0EagILucelmqvdvmoyzDF+yE+evA+6vBzPwmqWS9omop8g==", "course"=>{"title"=>"Adding Images in Ruby", "description"=>"using carrierwave", "cost"=>"0", "image"=>#<ActionDispatch::Http::UploadedFile:0x00007f2dd40c9a28 @tempfile=#<Tempfile:/tmp/RackMultipart20191016-4-1s60cr1.png>, @original_filename="upload-files-drag-and-drop.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"course[image]\"; filename=\"upload-files-drag-and-drop.png\"\r\nContent-Type: image/png\r\n">}, "commit"=>"Create"}
+2019-10-16T03:39:06.966234+00:00 app[web.1]: D, [2019-10-16T03:39:06.966121 #4] DEBUG -- : [a062d8a9-3eff-4d5a-bbc5-71ffcee11fa9]   User Load (1.3ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2  [["id", 1], ["LIMIT", 1]]
+2019-10-16T03:39:07.004889+00:00 app[web.1]: I, [2019-10-16T03:39:07.004764 #4]  INFO -- : [a062d8a9-3eff-4d5a-bbc5-71ffcee11fa9] Completed 500 Internal Server Error in 44ms (ActiveRecord: 1.3ms)
+2019-10-16T03:39:07.005654+00:00 app[web.1]: F, [2019-10-16T03:39:07.005574 #4] FATAL -- : [a062d8a9-3eff-4d5a-bbc5-71ffcee11fa9]
+2019-10-16T03:39:07.005851+00:00 app[web.1]: F, [2019-10-16T03:39:07.005778 #4] FATAL -- : [a062d8a9-3eff-4d5a-bbc5-71ffcee11fa9] NoMethodError (undefined method `image_will_change!' for #<Course:0x00007f2dd40f3558>
+2019-10-16T03:39:07.005854+00:00 app[web.1]: Did you mean?  title_will_change!):
+2019-10-16T03:39:07.005925+00:00 app[web.1]: F, [2019-10-16T03:39:07.005857 #4] FATAL -- : [a062d8a9-3eff-4d5a-bbc5-71ffcee11fa9]
+2019-10-16T03:39:07.006010+00:00 app[web.1]: F, [2019-10-16T03:39:07.005945 #4] FATAL -- : [a062d8a9-3eff-4d5a-bbc5-71ffcee11fa9] app/controllers/instructor/courses_controller.rb:10:in `create'
+2019-10-16T03:39:07.010107+00:00 heroku[router]: at=info method=POST path="/instructor/courses" host=flixter-melissa-roetker.herokuapp.com request_id=a062d8a9-3eff-4d5a-bbc5-71ffcee11fa9 fwd="71.196.254.141" dyno=web.1 connect=6ms service=176ms status=500 bytes=1827 protocol=https
+[ENV]:/vagrant/src/flixter $ 
