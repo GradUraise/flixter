@@ -11,5 +11,8 @@ Rails.application.routes.draw do
     resources :courses, only: [:new, :create, :show] do
       resources :sections, only: [:new, :create]
     end
+    namespace :instructor do
+      resources :courses, only: [:new, :create, :show]
+    end
   end
 end
