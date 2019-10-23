@@ -12,7 +12,7 @@ class Instructor::SectionsController < ApplicationController
     end
 
     def update
-        current_course.sections.update_attributes(section_params)
+        current_sections.update_attributes(section_params)
         render plain: 'updated!'
     end
 
@@ -34,7 +34,7 @@ class Instructor::SectionsController < ApplicationController
     end
 
     def current_section
-        @current_section ||= Section.find(params[:section_id])
+        @current_section ||= Section.find(params[:id])
     end
 
     def section_params
